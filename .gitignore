@@ -33,3 +33,13 @@ next-env.d.ts
 
 .azure/
 infra/aad_setup.sh
+
+
+
+*.env
+*.env1
+*.evn2
+
+.env
+.env1
+.evn2

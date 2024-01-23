@@ -30,7 +30,7 @@ const ChatRow: FC<ChatRowProps> = (props) => {
   return (
     <div
       className={cn(
-        "container mx-auto max-w-4xl py-6 flex flex-col ",
+        "container mx-auto max-w-4xl py-10 flex flex-col ",
         props.type === "assistant" ? "items-start" : "items-end"
       )}
     >

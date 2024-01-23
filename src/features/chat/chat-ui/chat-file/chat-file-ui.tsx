@@ -19,6 +19,7 @@ export const ChatFileUI: FC = () => {
         <Input
           name="file"
           type="file"
+          multiple
           required
           disabled={isUploadingFile}
           placeholder="Describe the purpose of the document"

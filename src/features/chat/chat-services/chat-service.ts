@@ -5,6 +5,7 @@ import { uniqueId } from "@/features/common/util";
 import { SqlQuerySpec } from "@azure/cosmos";
 import { CosmosDBContainer } from "../../common/cosmos";
 import { ChatMessageModel, MESSAGE_ATTRIBUTE } from "./models";
+import { Emails } from "@/features/auth/helpers";
 
 export const FindAllChats = async (chatThreadID: string) => {
   const container = await CosmosDBContainer.getInstance().getContainer();
@@ -31,7 +32,7 @@ export const FindAllChats = async (chatThreadID: string) => {
   const { resources } = await container.items
     .query<ChatMessageModel>(querySpec)
     .fetchAll();
-
+  // console.log(resources);
   return resources;
 };
 
@@ -42,6 +43,7 @@ export const UpsertChat = async (chatModel: ChatMessageModel) => {
     createdAt: new Date(),
     type: MESSAGE_ATTRIBUTE,
     isDeleted: false,
+    email: await Emails(), // Added the email field
   };
 
   const container = await CosmosDBContainer.getInstance().getContainer();
@@ -78,5 +80,6 @@ export const newChatModel = (): ChatMessageModel => {
     type: MESSAGE_ATTRIBUTE,
     isDeleted: false,
     context: "",
+    email: "", // Added the email field
   };
 };

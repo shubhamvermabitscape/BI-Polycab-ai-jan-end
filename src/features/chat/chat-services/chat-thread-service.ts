@@ -44,6 +44,7 @@ export const FindAllChatThreadForCurrentUser = async () => {
       partitionKey: await userHashedId(),
     })
     .fetchAll();
+    
   return resources;
 };
 

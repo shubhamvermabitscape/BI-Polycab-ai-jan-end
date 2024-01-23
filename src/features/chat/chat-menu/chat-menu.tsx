@@ -4,15 +4,17 @@ import { MenuItems } from "./menu-items";
 import { NewChat } from "./new-chat";
 
 export const ChatMenu = async () => {
+  
   const items = await FindAllChatThreadForCurrentUser();
-
+  const Adminemail:string=process.env.ADMIN_EMAIL_ADDRESS
+  
   return (
     <Menu className=" p-2">
       <MenuHeader className="justify-end">
-        <NewChat />
+        <NewChat Adminemail={Adminemail}/>
       </MenuHeader>
       <MenuContent>
-        <MenuItems menuItems={items} />
+        <MenuItems menuItems={items} Adminemail={Adminemail} />
       </MenuContent>
     </Menu>
   );

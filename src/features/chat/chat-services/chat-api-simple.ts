@@ -5,6 +5,7 @@ import { OpenAIStream, StreamingTextResponse } from "ai";
 import { initAndGuardChatSession } from "./chat-thread-service";
 import { CosmosDBChatMessageHistory } from "./cosmosdb/cosmosdb";
 import { PromptGPTProps } from "./models";
+import { useSession } from "next-auth/react";
 
 export const ChatAPISimple = async (props: PromptGPTProps) => {
   const { lastHumanMessage, chatThread } = await initAndGuardChatSession(props);
@@ -12,10 +13,12 @@ export const ChatAPISimple = async (props: PromptGPTProps) => {
   const openAI = OpenAIInstance();
 
   const userId = await userHashedId();
-
+  const { data: session } = useSession();
+  const email=session?.user.email??"not found email"
   const chatHistory = new CosmosDBChatMessageHistory({
     sessionId: chatThread.id,
     userId: userId,
+    email:email
   });
 
   await chatHistory.addMessage({

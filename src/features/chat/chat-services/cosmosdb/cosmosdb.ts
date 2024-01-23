@@ -13,20 +13,25 @@ import { ChatCompletionMessage } from "openai/resources";
 export interface CosmosDBChatMessageHistoryFields {
   sessionId: string;
   userId: string;
+  email:string;
 }
 
 export class CosmosDBChatMessageHistory {
   private sessionId: string;
   private userId: string;
+  email: string;
 
-  constructor({ sessionId, userId }: CosmosDBChatMessageHistoryFields) {
+  constructor({ sessionId, userId,email}: CosmosDBChatMessageHistoryFields) {
     this.sessionId = sessionId;
     this.userId = userId;
+    this.email=email
   }
 
   async getMessages(): Promise<ChatCompletionMessage[]> {
     const chats = await FindAllChats(this.sessionId);
+   
     return mapOpenAIChatMessages(chats);
+    
   }
 
   async clear(): Promise<void> {
@@ -45,6 +50,7 @@ export class CosmosDBChatMessageHistory {
       threadId: this.sessionId,
       userId: this.userId,
       context: citations,
+      email:this.email,
     };
 
     await UpsertChat(modelToSave);
@@ -58,6 +64,7 @@ function mapOpenAIChatMessages(
     return {
       role: message.role,
       content: message.content,
+      // email:message.email
     };
   });
 }

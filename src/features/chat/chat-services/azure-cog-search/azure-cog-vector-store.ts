@@ -271,12 +271,20 @@ const AZURE_SEARCH_INDEX = {
       dimensions: 1536,
       vectorSearchConfiguration: "vectorConfig",
     },
+    {
+      name: "sourcepage",
+      type: "Edm.String",
+      retrievable: true,  
+      searchable: false, 
+      filterable: true,  
+      facetable: true, 
+    },
   ],
   vectorSearch: {
     algorithmConfigurations: [
       {
         name: "vectorConfig",
-        kind: "hnsw",
+        kind: "hnsw", 
       },
     ],
   },

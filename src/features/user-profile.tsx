@@ -15,6 +15,7 @@ import { signOut, useSession } from "next-auth/react";
 
 const UserProfile = () => {
   const { data: session } = useSession();
+  
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -44,6 +45,7 @@ const UserProfile = () => {
             </p>
             <p className="text-xs leading-none text-muted-foreground">
               {session?.user?.email}
+              
             </p>
             <p className="text-xs leading-none text-muted-foreground">
               {session?.user?.isAdmin ? "Admin" : ""}

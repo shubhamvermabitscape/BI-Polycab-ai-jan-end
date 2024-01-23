@@ -14,6 +14,7 @@ export interface ChatMessageModel {
   role: ChatRole;
   context: string;
   type: "CHAT_MESSAGE";
+  email: string;
 }
 
 export type ConversationStyle = "creative" | "balanced" | "precise";
@@ -39,6 +40,7 @@ export interface PromptGPTBody {
   chatType: ChatType;
   conversationStyle: ConversationStyle;
   chatOverFileName: string;
+  // email:string
 }
 
 export interface PromptGPTProps extends PromptGPTBody {
@@ -52,6 +54,7 @@ export interface ChatDocumentModel {
   userId: string;
   isDeleted: boolean;
   createdAt: Date;
+  email: string;
   type: "CHAT_DOCUMENT";
 }
 

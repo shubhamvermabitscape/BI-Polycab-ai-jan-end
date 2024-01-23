@@ -1,4 +1,5 @@
 import { userHashedId } from "@/features/auth/helpers";
+import { Emails } from "@/features/auth/helpers";
 import { OpenAIInstance } from "@/features/common/openai";
 import { AI_NAME } from "@/features/theme/customise";
 import { OpenAIStream, StreamingTextResponse } from "ai";
@@ -6,6 +7,8 @@ import { similaritySearchVectorWithScore } from "./azure-cog-search/azure-cog-ve
 import { initAndGuardChatSession } from "./chat-thread-service";
 import { CosmosDBChatMessageHistory } from "./cosmosdb/cosmosdb";
 import { PromptGPTProps } from "./models";
+import { Session } from "inspector";
+
 
 const SYSTEM_PROMPT = `You are ${AI_NAME} who is a helpful AI Assistant.`;
 
@@ -17,16 +20,20 @@ const CONTEXT_PROMPT = ({
   userQuestion: string;
 }) => {
   return `
-- Given the following extracted parts of a long document, create a final answer. \n
-- If you don't know the answer, just say that you don't know. Don't try to make up an answer.\n
-- You must always include a citation at the end of your answer and don't include full stop.\n
-- Use the format for your citation {% citation items=[{name:"filename 1",id:"file id"}, {name:"filename 2",id:"file id"}] /%}\n 
+- Given the following extracted parts of a long document, create a final answer, including page numbers, and salesperson-like responses.\n
+- If you don't know the answer, explicitly state that you don't know. Don't make up an answer.\n
+- Provide details about switches, items, prices, and MRP Assume a salesperson perspective.\n
+- If you are asked for a price, provide the MRP.\n
+- Try to make sure give answers from one page only.\n
+- If you are asked for Office address don't give timings\n
+- Include a citation at the end of your answer; use the format {% citation items=[{name:"filename 1", id:"file id", page:"page number 1"}, {name:"filename 2", id:"file id", page:"page number 2"}] /%}\n 
 ----------------\n 
 context:\n 
 ${context}
 ----------------\n 
 question: ${userQuestion}`;
 };
+
 
 export const ChatAPIData = async (props: PromptGPTProps) => {
   const { lastHumanMessage, id, chatThread } = await initAndGuardChatSession(
@@ -36,14 +43,15 @@ export const ChatAPIData = async (props: PromptGPTProps) => {
   const openAI = OpenAIInstance();
 
   const userId = await userHashedId();
-
+  const email= await Emails()
   const chatHistory = new CosmosDBChatMessageHistory({
     sessionId: chatThread.id,
     userId: userId,
+    email:email,
   });
 
   const history = await chatHistory.getMessages();
-  const topHistory = history.slice(history.length - 30, history.length);
+  const topHistory = history.slice(history.length - 60, history.length);
 
   const relevantDocuments = await findRelevantDocuments(
     lastHumanMessage.content,

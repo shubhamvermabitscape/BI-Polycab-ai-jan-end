@@ -4,6 +4,7 @@ import {
   UploadDocument,
 } from "../../chat-services/chat-document-service";
 import { useChatContext } from "../chat-context";
+import { UploadtoBlob } from "../../blob-services/blob-file-upload";
 
 interface Props {
   id: string;
@@ -25,51 +26,64 @@ export const useFileSelection = (props: Props) => {
     try {
       setIsUploadingFile(true);
       setUploadButtonLabel("Uploading document...");
-      formData.append("id", props.id);
-      const file: File | null = formData.get("file") as unknown as File;
-      const uploadResponse = await UploadDocument(formData);
 
-      if (uploadResponse.success) {
-        let index = 0;
+      // Extract files from formData
+      // Extract files from formData
+      const files: FileList | null = (formData.getAll("file") as unknown) as FileList;
 
-        for (const doc of uploadResponse.response) {
-          setUploadButtonLabel(
-            `Indexing document [${index + 1}]/[${
-              uploadResponse.response.length
-            }]`
-          );
-          try {
-            const indexResponse = await IndexDocuments(
-              file.name,
-              [doc],
-              props.id
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        formData.set("file", file);
+
+        formData.append("id", props.id);
+        //here we are uploading file to blob storage
+        const blobUploadDone = await UploadtoBlob(formData);
+        console.log(blobUploadDone); //console for status of blob upload
+        const uploadResponse = await UploadDocument(formData);
+
+        if (uploadResponse.success) {
+          let index = 0;
+
+          for (const doc of uploadResponse.response) {
+            setUploadButtonLabel(
+              `Indexing document [${index + 1}]/[${
+                uploadResponse.response.length
+              }]`
             );
+            try {
+              const indexResponse = await IndexDocuments(
+                file.name,
+                [doc],
+                props.id
+              );
 
-            if (!indexResponse.success) {
-              showError(indexResponse.error);
-              break;
+              if (!indexResponse.success) {
+                showError(indexResponse.error);
+                break;
+              }
+            } catch (e) {
+              alert(e);
             }
-          } catch (e) {
-            alert(e);
+
+            index++;
           }
 
-          index++;
-        }
-
-        if (index === uploadResponse.response.length) {
-          showSuccess({
-            title: "File upload",
-            description: `${file.name} uploaded successfully.`,
-          });
-          setUploadButtonLabel("");
-          setChatBody({ ...chatBody, chatOverFileName: file.name });
+          if (index === uploadResponse.response.length) {
+            showSuccess({
+              title: "File upload",
+              description: `${file.name} uploaded successfully.`,
+            });
+            setUploadButtonLabel("");
+            setChatBody({ ...chatBody, chatOverFileName: file.name });
+          } else {
+            showError(
+              "Looks like not all documents were indexed. Please try again."
+            );
+          }
         } else {
-          showError(
-            "Looks like not all documents were indexed. Please try again."
-          );
+          showError(uploadResponse.error);
         }
-      } else {
-        showError(uploadResponse.error);
       }
     } catch (error) {
       showError("" + error);

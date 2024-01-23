@@ -1,6 +1,6 @@
 "use server";
 
-import { userHashedId } from "@/features/auth/helpers";
+import { userHashedId,Emails } from "@/features/auth/helpers";
 import { CosmosDBContainer } from "@/features/common/cosmos";
 
 import { uniqueId } from "@/features/common/util";
@@ -21,6 +21,7 @@ import {
 } from "./models";
 import { chunkDocumentWithOverlap } from "./text-chunk";
 import { isNotNullOrEmpty } from "./utils";
+
 
 const MAX_DOCUMENT_SIZE = 20000000;
 
@@ -170,6 +171,8 @@ export const UpsertChatDocument = async (
   fileName: string,
   chatThreadID: string
 ) => {
+  
+  
   const modelToSave: ChatDocumentModel = {
     chatThreadId: chatThreadID,
     id: uniqueId(),
@@ -177,6 +180,7 @@ export const UpsertChatDocument = async (
     createdAt: new Date(),
     type: CHAT_DOCUMENT_ATTRIBUTE,
     isDeleted: false,
+    email:await Emails(),
     name: fileName,
   };
 

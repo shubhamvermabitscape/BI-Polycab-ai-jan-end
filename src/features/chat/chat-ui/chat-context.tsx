@@ -1,7 +1,6 @@
 "use client";
 
 import { useGlobalMessageContext } from "@/features/global-message/global-message-context";
-import { Message } from "ai";
 import { UseChatHelpers, useChat } from "ai/react";
 import React, { FC, createContext, useContext, useState } from "react";
 import {
@@ -22,6 +21,22 @@ import {
   useTextToSpeech,
 } from "./chat-speech/use-text-to-speech";
 
+import { Message as OriginalMessage } from "ai";
+
+interface Message {
+  // Preserve all properties from the original Message interface
+  id: OriginalMessage["id"];
+  createdAt?: OriginalMessage["createdAt"];
+  content: OriginalMessage["content"];
+  ui?: OriginalMessage["ui"];
+  role: OriginalMessage["role"];
+  name?: OriginalMessage["name"];
+  function_call?: OriginalMessage["function_call"];
+
+  // Add the email property
+  email?: string;
+}
+
 interface ChatContextProps extends UseChatHelpers {
   id: string;
   setChatBody: (body: PromptGPTBody) => void;
@@ -38,6 +53,7 @@ interface Prop {
   children: React.ReactNode;
   id: string;
   chats: Array<ChatMessageModel>;
+  // email:string
   chatThread: ChatThreadModel;
 }
 
@@ -52,12 +68,12 @@ export const ChatProvider: FC<Prop> = (props) => {
   });
 
   const fileState = useFileState();
-
   const [chatBody, setBody] = useState<PromptGPTBody>({
     id: props.chatThread.id,
     chatType: props.chatThread.chatType,
     conversationStyle: props.chatThread.conversationStyle,
     chatOverFileName: props.chatThread.chatOverFileName,
+    // email:props.email,
   });
 
   const { textToSpeech } = speechSynthesizer;

@@ -7,6 +7,8 @@ import { NewChat } from "../../chat-menu/new-chat";
 interface Prop {}
 
 export const StartNewChat: FC<Prop> = (props) => {
+  const Adminemail:string=process.env.ADMIN_EMAIL_ADDRESS
+  
   return (
     <div className="grid grid-cols-5 w-full items-center container mx-auto max-w-3xl justify-center h-full gap-9">
       <div className="col-span-2 gap-5 flex flex-col flex-1">
@@ -25,7 +27,7 @@ export const StartNewChat: FC<Prop> = (props) => {
           <p>You can start a new chat with me by clicking the button below.</p>
         </div>
         <div className="-mx-5 -mb-5 p-5 flex flex-col border-t bg-muted">
-          <NewChat />
+          <NewChat Adminemail={Adminemail} />
         </div>
       </Card>
     </div>

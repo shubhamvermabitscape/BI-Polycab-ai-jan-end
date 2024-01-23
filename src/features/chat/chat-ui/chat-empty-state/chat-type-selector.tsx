@@ -17,13 +17,13 @@ export const ChatTypeSelector: FC<Prop> = (props) => {
       onValueChange={(value) => onChatTypeChange(value as ChatType)}
     >
       <TabsList className="grid w-full grid-cols-2 h-12 items-stretch">
-        <TabsTrigger
+        {/* <TabsTrigger
           value="simple"
           className="flex gap-2"
           disabled={props.disable}
         >
           <MessageCircle size={20} /> General
-        </TabsTrigger>
+        </TabsTrigger> */}
         <TabsTrigger
           value="data"
           className="flex gap-2"

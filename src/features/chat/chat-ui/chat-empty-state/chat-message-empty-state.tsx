@@ -17,10 +17,7 @@ export const ChatMessageEmptyState: FC<Prop> = (props) => {
     <div className="grid grid-cols-5 w-full items-center container mx-auto max-w-3xl justify-center h-full gap-9">
       <div className="col-span-2 gap-5 flex flex-col flex-1">
         <img src="/ai-icon.png" className="w-36" />
-        <p className="">
-          Start by just typing your message in the box below. You can also
-          personalise the chat by making changes to the settings on the right.
-        </p>
+        <p className="">Start by just typing your message in the box below.</p>
       </div>
       <Card className="col-span-3 flex flex-col gap-5 p-5 ">
         <Typography variant="h4" className="text-primary">
@@ -28,10 +25,10 @@ export const ChatMessageEmptyState: FC<Prop> = (props) => {
         </Typography>
 
         <div className="flex flex-col gap-2">
-          <p className="text-sm text-muted-foreground">
+          {/* <p className="text-sm text-muted-foreground">
             Choose a conversation style
-          </p>
-          <ChatStyleSelector disable={false} />
+          </p> */}
+          {/* <ChatStyleSelector disable={false} /> */}
         </div>
         <div className="flex flex-col gap-2">
           <p className="text-sm text-muted-foreground">

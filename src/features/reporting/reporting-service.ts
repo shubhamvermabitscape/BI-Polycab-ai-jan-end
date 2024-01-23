@@ -12,7 +12,6 @@ export const FindAllChatThreadsForReporting = async (
   pageNumber = 0
 ) => {
   const container = await CosmosDBContainer.getInstance().getContainer();
-
   const querySpec: SqlQuerySpec = {
     query: `SELECT * FROM root r WHERE r.type=@type ORDER BY r.createdAt DESC OFFSET ${
       pageNumber * pageSize
@@ -35,7 +34,6 @@ export const FindAllChatThreadsForReporting = async (
 
 export const FindChatThreadByID = async (chatThreadID: string) => {
   const container = await CosmosDBContainer.getInstance().getContainer();
-
   const querySpec: SqlQuerySpec = {
     query: "SELECT * FROM root r WHERE r.type=@type AND r.id=@id",
     parameters: [
@@ -60,7 +58,6 @@ export const FindChatThreadByID = async (chatThreadID: string) => {
 
 export const FindAllChatsInThread = async (chatThreadID: string) => {
   const container = await CosmosDBContainer.getInstance().getContainer();
-
   const querySpec: SqlQuerySpec = {
     query: "SELECT * FROM root r WHERE r.type=@type AND r.threadId = @threadId",
     parameters: [
