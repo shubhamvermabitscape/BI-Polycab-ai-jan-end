@@ -63,11 +63,12 @@ const LoadFile = async (formData: FormData) => {
       );
       const { paragraphs } = await poller.pollUntilDone();
 
-      const docs: Array<string> = [];
+      const docs: Array<object> = [];
 
       if (paragraphs) {
+        console.log(paragraphs)
         for (const paragraph of paragraphs) {
-          docs.push(paragraph.content);
+          docs.push(paragraph);
         }
       }
 
