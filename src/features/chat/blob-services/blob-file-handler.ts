@@ -6,6 +6,6 @@ interface Props {
 
 export const blobFileHandler = async (props: Props) => {
   const linkpdf = await generateSasToken(props.blobName);
-  console.log(linkpdf);
+  // console.log(linkpdf);
   return linkpdf;
 };

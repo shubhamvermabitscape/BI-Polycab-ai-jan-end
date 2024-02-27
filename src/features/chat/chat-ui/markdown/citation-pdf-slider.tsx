@@ -28,7 +28,7 @@ export const CitationPDFSlider: FC<PDFSliderProps> = (props) => {
 
     fetchData();
   }, []);
-  console.log(page);
+
   return (
     <>
       <Sheet>

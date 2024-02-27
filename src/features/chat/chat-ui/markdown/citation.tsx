@@ -62,11 +62,11 @@ export const Citation: FC<Props> = (props: Props) => {
                 
                 return (
                   <div key={index}>
-                     {/* <CitationSlider
+                     <CitationSlider
                       index={index + 1}
                       name={item.name}
                       id={item.id}
-                    />  */}
+                    /> 
                   </div>
                 );
               })}

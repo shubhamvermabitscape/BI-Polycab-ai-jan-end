@@ -26,7 +26,7 @@ export const UploadtoBlob = async (formData: FormData) => {
 
     const fileName = fileField.name;
     const blockBlobClient = containerClient.getBlockBlobClient(`${fileName}`);
-    console.log(blockBlobClient);
+    // console.log(blockBlobClient);
 
     // Read the file content into a buffer or an ArrayBuffer
     const fileContent = await fileField.arrayBuffer();
@@ -37,7 +37,7 @@ export const UploadtoBlob = async (formData: FormData) => {
         blobHTTPHeaders: { blobContentType: "application/pdf" },
       });
 
-    console.log("File uploaded successfully:", uploadResponse);
+    // console.log("File uploaded successfully:", uploadResponse);
   } catch (error) {
     console.error("Error uploading file to Azure Blob Storage:", error);
   }
