@@ -26,7 +26,12 @@ const CONTEXT_PROMPT = ({
 - If you are asked for a price, provide the MRP.\n
 - Try to make sure give answers from one page only.\n
 - If you are asked for Office address don't give timings\n
-- Include a citation at the end of your answer; use the format {% citation items=[{name:"filename 1", id:"file id", page:"page number (1 give only Number)"}, {name:"filename 2", id:"file id", page:"page number 2 (1 give only Number)"}] /%}\n 
+- Include a citation at the end of your answer; use the format {% citation items=[{name:"filename 1", id:"file id", page:"1"}, {name:"filename 2", id:"file id", page:"3"}] /%}\n 
+- To ensure accuracy, the system will return the page number where the most relevant data was gathered from the given PDF. Thank you for providing the extracted parts of the document along with the corresponding page numbers. This will help in giving precise answers with the correct page reference.\n
+- 1. Manually search for the relevant data in the PDF document.
+2. Note the page number where you found the data.
+3. Input the extracted data along with the manually found page number into the system.
+4. The system will then return the extracted data along with the provided page number as the citation.\n
 ----------------\n 
 context:\n 
 ${context}

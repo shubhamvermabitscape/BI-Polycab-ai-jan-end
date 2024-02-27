@@ -16,13 +16,15 @@ interface SliderProps {
   index: number;
   id: string;
   blobPage:any;
-  blobName:any
+  blobName:any;
+  items:any;
 }
 
 export const CitationSlider: FC<SliderProps> = (props) => {
+  console.log(props.items)
   const [node, formAction] = useFormState(CitationAction, null);
   const [sasToken, setSasToken] = useState<string | undefined>();
-  const page = parseInt(props.blobPage ?? "0") + 1;
+  const page = parseInt(props.items ?? "0") + 1;
   useEffect(() => {
     const fetchData = async () => {
       const prop = {
@@ -34,8 +36,7 @@ export const CitationSlider: FC<SliderProps> = (props) => {
 
     fetchData();
   }, []);
-  // console.log(node)
-  // console.log(props.blobPage)
+
   return (
   <div className="flex">
       <form>
@@ -54,7 +55,7 @@ export const CitationSlider: FC<SliderProps> = (props) => {
         </SheetTrigger>
         <SheetContent size="LG">
           <SheetHeader>
-            <SheetTitle>Citation</SheetTitle>
+            <SheetTitle>{props.blobName}</SheetTitle>
           </SheetHeader>
           {/* <div className="text-sm text-muted-foreground">{node}</div> */}
           <div className="flex">

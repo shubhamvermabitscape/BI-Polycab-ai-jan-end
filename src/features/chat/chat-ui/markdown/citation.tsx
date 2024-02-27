@@ -26,8 +26,6 @@ export const citation = {
 };
 
 export const Citation: FC<Props> = (props: Props) => {
-  // group citations by name
-  // console.log(props);
   const citations = props.items.reduce((acc, citation) => {
     const { name } = citation;
     if (!acc[name]) {
@@ -36,21 +34,11 @@ export const Citation: FC<Props> = (props: Props) => {
     acc[name].push(citation);
     return acc;
   }, {} as Record<string, Citation[]>);
-  //  console.log(citations);
-    
-    //here getting blob sas token to fetch pdf from azure blob storage
-    // const [blobName, setBlobName] = useState<string | undefined>();
-    // setBlobName(props.items[0].name)
+
     const blobName = props.items[0].name;
     const blobPage = props.items[0].page;
-    // console.log(props.items)
-    // console.log(blobPage)
-    // console.log(blobName)
-    // const prop={
-    //   blobName: blobName??"",
-    // }
-    // const sastoken = blobFileHandler(prop);
-    // console.log(sastoken);
+     console.log(citations)
+
   return (
     <div className="interactive-citation p-4 border mt-4 flex flex-col rounded-md gap-2">
       {Object.entries(citations).map(([name, items], index: number) => {
@@ -64,6 +52,7 @@ export const Citation: FC<Props> = (props: Props) => {
                 return (
                   <div key={index} >
                      <CitationSlider
+                     items={item.page}
                      blobName={blobName}
                       blobPage={blobPage}
                       index={index + 1}
