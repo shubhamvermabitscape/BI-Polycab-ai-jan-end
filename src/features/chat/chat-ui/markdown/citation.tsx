@@ -36,13 +36,14 @@ export const Citation: FC<Props> = (props: Props) => {
     acc[name].push(citation);
     return acc;
   }, {} as Record<string, Citation[]>);
-  // console.log(citations);
+  //  console.log(citations);
     
     //here getting blob sas token to fetch pdf from azure blob storage
     // const [blobName, setBlobName] = useState<string | undefined>();
     // setBlobName(props.items[0].name)
     const blobName = props.items[0].name;
     const blobPage = props.items[0].page;
+    // console.log(props.items)
     // console.log(blobPage)
     // console.log(blobName)
     // const prop={
@@ -57,11 +58,11 @@ export const Citation: FC<Props> = (props: Props) => {
         return (
           <div key={index} className="flex flex-col gap-2">
             <div className="font-semibold text-sm">{name}</div>
-            <div >
+            <div className="flex">
               {items.map((item, index: number) => {
                 
                 return (
-                  <div key={index}>
+                  <div key={index} >
                      <CitationSlider
                      blobName={blobName}
                       blobPage={blobPage}
@@ -72,7 +73,7 @@ export const Citation: FC<Props> = (props: Props) => {
                   </div>
                 );
               })}
-              <CitationPDFSlider blobName={blobName} blobPage={blobPage}/> 
+              {/* <CitationPDFSlider blobName={blobName} blobPage={blobPage}/>  */}
             </div>
           </div>
         );

@@ -26,7 +26,7 @@ const CONTEXT_PROMPT = ({
 - If you are asked for a price, provide the MRP.\n
 - Try to make sure give answers from one page only.\n
 - If you are asked for Office address don't give timings\n
-- Include a citation at the end of your answer; use the format {% citation items=[{name:"filename 1", id:"file id", page:"page number 1"}, {name:"filename 2", id:"file id", page:"page number 2"}] /%}\n 
+- Include a citation at the end of your answer; use the format {% citation items=[{name:"filename 1", id:"file id", page:"page number (1 give only Number)"}, {name:"filename 2", id:"file id", page:"page number 2 (1 give only Number)"}] /%}\n 
 ----------------\n 
 context:\n 
 ${context}

@@ -37,7 +37,8 @@ export const CitationSlider: FC<SliderProps> = (props) => {
   // console.log(node)
   // console.log(props.blobPage)
   return (
-    <form>
+  <div className="flex">
+      <form>
       <input type="hidden" name="id" value={props.id} />
       <Sheet>
         <SheetTrigger asChild>
@@ -56,7 +57,7 @@ export const CitationSlider: FC<SliderProps> = (props) => {
             <SheetTitle>Citation</SheetTitle>
           </SheetHeader>
           {/* <div className="text-sm text-muted-foreground">{node}</div> */}
-          <div>
+          <div className="flex">
             {sasToken ? (
               <iframe
                 src={`${sasToken}#page=${page}`}
@@ -71,5 +72,6 @@ export const CitationSlider: FC<SliderProps> = (props) => {
         </SheetContent>
       </Sheet>
     </form>
+  </div>
   );
 };
