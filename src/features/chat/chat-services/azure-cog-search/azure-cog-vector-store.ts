@@ -274,17 +274,25 @@ const AZURE_SEARCH_INDEX = {
     {
       name: "sourcepage",
       type: "Edm.String",
-      retrievable: true,  
-      searchable: false, 
-      filterable: true,  
-      facetable: true, 
+      retrievable: true,
+      searchable: false,
+      filterable: true,
+      facetable: true,
+    },
+    {
+      name: "metadata_storage_content_type",
+      type: "Edm.String",
+      retrievable: true,
+      searchable: false,
+      filterable: true,
+      facetable: true,
     },
   ],
   vectorSearch: {
     algorithmConfigurations: [
       {
         name: "vectorConfig",
-        kind: "hnsw", 
+        kind: "hnsw",
       },
     ],
   },
