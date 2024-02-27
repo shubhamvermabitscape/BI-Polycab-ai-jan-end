@@ -1,8 +1,8 @@
 "use client";
 import { FC, useState } from "react";
 import { CitationSlider } from "./citation-slider";
-import { blobFileHandler } from "../../blob-services/blob-file-handler";
-import { s } from "@markdoc/markdoc/dist/src/schema";
+// import { blobFileHandler } from "../../blob-services/blob-file-handler";
+// import { s } from "@markdoc/markdoc/dist/src/schema";
 import { CitationPDFSlider } from "./citation-pdf-slider";
 
 interface Citation {
@@ -27,7 +27,7 @@ export const citation = {
 
 export const Citation: FC<Props> = (props: Props) => {
   // group citations by name
-  console.log(props);
+  // console.log(props);
   const citations = props.items.reduce((acc, citation) => {
     const { name } = citation;
     if (!acc[name]) {
@@ -36,14 +36,14 @@ export const Citation: FC<Props> = (props: Props) => {
     acc[name].push(citation);
     return acc;
   }, {} as Record<string, Citation[]>);
-  console.log(citations);
+  // console.log(citations);
     
     //here getting blob sas token to fetch pdf from azure blob storage
     // const [blobName, setBlobName] = useState<string | undefined>();
     // setBlobName(props.items[0].name)
     const blobName = props.items[0].name;
     const blobPage = props.items[0].page;
-    console.log(blobPage)
+    // console.log(blobPage)
     // console.log(blobName)
     // const prop={
     //   blobName: blobName??"",
@@ -63,6 +63,8 @@ export const Citation: FC<Props> = (props: Props) => {
                 return (
                   <div key={index}>
                      <CitationSlider
+                     blobName={blobName}
+                      blobPage={blobPage}
                       index={index + 1}
                       name={item.name}
                       id={item.id}
