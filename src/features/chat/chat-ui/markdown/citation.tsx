@@ -37,7 +37,7 @@ export const Citation: FC<Props> = (props: Props) => {
 
     const blobName = props.items[0].name;
     const blobPage = props.items[0].page;
-     console.log(citations)
+    // console.log(citations)
 
   return (
     <div className="interactive-citation p-4 border mt-4 flex flex-col rounded-md gap-2">

@@ -13,7 +13,7 @@ export const CitationAction = async (
   if (result.length === 0) return <div>Not found</div>;
 
   const firstResult = result[0];
-  // console.log(firstResult); //source page in null
+  //  console.log(firstResult); //source page in null
 
   return (
     <div className="flex flex-col gap-4">

@@ -75,7 +75,7 @@ const configureIdentityProvider = () => {
               isAdmin: false,
               image: "",
             };
-          console.log("=== DEV USER LOGGED IN:\n", JSON.stringify(user, null, 2));
+          // console.log("=== DEV USER LOGGED IN:\n", JSON.stringify(user, null, 2));
           return user;
         }
       })

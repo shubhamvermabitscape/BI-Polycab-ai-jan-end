@@ -20,7 +20,7 @@ interface Props {
 }
 
 export const CodeBlock: FC<Props> = memo(({ language, children }) => {
-  console.log(language);
+  // console.log(language);
   return (
     <Prism language={language} style={atomDark} PreTag="pre" showLineNumbers>
       {children}

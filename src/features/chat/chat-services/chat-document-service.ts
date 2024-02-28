@@ -32,8 +32,14 @@ export const UploadDocument = async (
     await ensureSearchIsConfigured();
 
     const { docs } = await LoadFile(formData);
-    const splitDocuments = chunkDocumentWithOverlap(docs.join("\n"));
-
+    //here we creating array of strint to split documnet
+    let newDocs:string[] = docs.map((doc: any) => {
+      return `${doc.content} (page Number:"+${doc.page})`;
+    });
+    // console.log(newDocs.join("\n"))
+    
+    const splitDocuments = chunkDocumentWithOverlap(newDocs.join("\n"));
+    // console.log(splitDocuments)
     return {
       success: true,
       error: "",
@@ -64,14 +70,17 @@ const LoadFile = async (formData: FormData) => {
       const { paragraphs } = await poller.pollUntilDone();
 
       const docs: Array<object> = [];
-
       if (paragraphs) {
-        console.log(paragraphs)
+        
         for (const paragraph of paragraphs) {
-          docs.push(paragraph);
+          
+          const content = paragraph.content;
+          const page = paragraph.boundingRegions && paragraph.boundingRegions[0];
+          // console.log(page?.pageNumber)
+           docs.push({ content, page: page?.pageNumber });
         }
       }
-
+      
       return { docs };
     }
   } catch (e) {
@@ -98,7 +107,8 @@ export const IndexDocuments = async (
 ): Promise<ServerActionResponse<AzureCogDocumentIndex[]>> => {
   try {
     const documentsToIndex: AzureCogDocumentIndex[] = [];
-
+    // let count = 1;
+    // console.log(docs);
     for (const doc of docs) {
       const docToAdd: AzureCogDocumentIndex = {
         id: uniqueId(),
@@ -108,12 +118,13 @@ export const IndexDocuments = async (
         metadata: fileName,
         embedding: [],
       };
-
+ 
+      // console.log(docToAdd);
       documentsToIndex.push(docToAdd);
     }
-
+ 
     await indexDocuments(documentsToIndex);
-
+ 
     await UpsertChatDocument(fileName, chatThreadId);
     return {
       success: true,

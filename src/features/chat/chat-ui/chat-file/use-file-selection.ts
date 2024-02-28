@@ -39,7 +39,7 @@ export const useFileSelection = (props: Props) => {
         formData.append("id", props.id);
         //here we are uploading file to blob storage
         const blobUploadDone = await UploadtoBlob(formData);
-        console.log(blobUploadDone); //console for status of blob upload
+        // console.log(blobUploadDone); //console for status of blob upload
         const uploadResponse = await UploadDocument(formData);
 
         if (uploadResponse.success) {

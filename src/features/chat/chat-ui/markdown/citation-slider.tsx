@@ -21,10 +21,10 @@ interface SliderProps {
 }
 
 export const CitationSlider: FC<SliderProps> = (props) => {
-  console.log(props.items)
+  // console.log(props.items)
   const [node, formAction] = useFormState(CitationAction, null);
   const [sasToken, setSasToken] = useState<string | undefined>();
-  const page = parseInt(props.items ?? "0") + 1;
+  const page = parseInt(props.items ?? "0");
   useEffect(() => {
     const fetchData = async () => {
       const prop = {
