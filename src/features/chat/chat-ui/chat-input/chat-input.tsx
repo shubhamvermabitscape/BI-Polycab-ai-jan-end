@@ -46,7 +46,8 @@ const ChatInput: FC<Props> = (props) => {
   const { speechEnabled } = useGlobalConfigContext();
   const { data: session } = useSession();
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const admin = session?.user.email === props.AdminEmail;
+  // const admin = session?.user.email === props.AdminEmail;
+  const hasvalue = props.AdminEmail.includes(session?.user.email||"")
 
   const { rows, resetRows, onKeyDown, onKeyUp } = useChatInputDynamicHeight({
     buttonRef,
@@ -84,7 +85,7 @@ const ChatInput: FC<Props> = (props) => {
       />
       <div className="container mx-auto max-w-4xl relative py-2 flex gap-2 items-center">
         {/* Suggestions Component */}
-        {fileChatVisible && admin && <ChatFileSlider />}
+        {fileChatVisible && hasvalue && <ChatFileSlider />}
         <Textarea
           rows={rows}
           value={input}

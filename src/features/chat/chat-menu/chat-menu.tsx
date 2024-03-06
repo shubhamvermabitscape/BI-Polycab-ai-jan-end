@@ -7,7 +7,7 @@ export const ChatMenu = async () => {
   
   const items = await FindAllChatThreadForCurrentUser();
   const Adminemail:string=process.env.ADMIN_EMAIL_ADDRESS
-  
+  // console.log()
   return (
     <Menu className=" p-2">
       <MenuHeader className="justify-end">

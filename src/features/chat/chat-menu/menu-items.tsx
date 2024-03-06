@@ -11,7 +11,7 @@ import { signOut, useSession } from "next-auth/react";
 
 interface Prop {
   menuItems: Array<ChatThreadModel>;
-  Adminemail:string|null|undefined
+  Adminemail:string
 }
 
 export const MenuItems: FC<Prop> = (props) => {
@@ -19,6 +19,7 @@ export const MenuItems: FC<Prop> = (props) => {
   const { id } = useParams();
   const router = useRouter();
   const { showError } = useGlobalMessageContext();
+  const hasvalue = props.Adminemail.includes(session?.user.email||"")
 
   const sendData = async (threadID: string) => {
     try {
@@ -57,7 +58,7 @@ export const MenuItems: FC<Prop> = (props) => {
           </span>
          
 
-          {session?.user.email === props.Adminemail ?  <Button
+          {hasvalue ?  <Button
             className="invisible  group-hover/item:visible hover:text-brand"
             size={"sm"}
             variant={"ghost"}
