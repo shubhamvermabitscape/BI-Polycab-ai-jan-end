@@ -32,7 +32,7 @@ export default function RootLayout({
               <div
                 className={cn(
                   inter.className,
-                  "flex w-full p-2 h-full gap-2 bg-primary"
+                  "flex w-full sm:p-2 p-1 h-full sm:gap-2 bg-primary"
                 )}
               >
                 {children}

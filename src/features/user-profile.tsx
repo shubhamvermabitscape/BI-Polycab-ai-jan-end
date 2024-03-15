@@ -19,9 +19,9 @@ const UserProfile = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div className="flex flex-col items-stretch">
+        <div className="flex flex-col items-stretch absolute bottom-0 mb-3 left-1 sm:left-4">
           <Button
-            className="rounded-full w-[40px] h-[40px] p-1 text-primary relative gap-2 justify-center"
+            className="rounded-full w-[40px] h-[40px] p-1 text-primary sm:relative gap-2 justify-center"
             variant={"outline"}
           >
             {session?.user?.image ? (
@@ -37,7 +37,7 @@ const UserProfile = () => {
           </Button>
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="end" forceMount>
+      <DropdownMenuContent className="w-56 " align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">

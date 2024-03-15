@@ -20,11 +20,12 @@ export const MainMenu = () => {
   const { data: session } = useSession();
   const { isMenuOpen, toggleMenu } = useMenuContext();
   return (
-    <div className="flex flex-col justify-between p-2">
-      <div className="flex gap-2  flex-col  items-center">
+    <div className="sm:flex sm:flex-col sm:justify-between sm:p-2 ">
+      
+      <div className="flex gap-2  flex-col  items-center absolute sm:relative z-50">
         <Button
           onClick={toggleMenu}
-          className="rounded-full w-[40px] h-[40px] p-1 text-primary"
+          className="sm:rounded-full sm:w-[40px] sm:h-[40px] sm:p-1 sm:text-primary"
           variant={"outline"}
         >
           {isMenuOpen ? <PanelLeftClose /> : <PanelRightClose />}
@@ -72,7 +73,7 @@ export const MainMenu = () => {
         </Button> */}
       </div>
       <div className="flex flex-col gap-2 items-center">
-        <ThemeToggle />
+        {/* <ThemeToggle /> */}
         <UserProfile />
       </div>
     </div>
