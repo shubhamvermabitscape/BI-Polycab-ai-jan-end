@@ -58,7 +58,7 @@ const ChatInput: FC<Props> = (props) => {
 
   const [suggestions, setSuggestions] = useState<string[]>([
     "Switchgear Warranty Period",
-    "Color of switches",
+    "Explain Color of Switches",
     "Give Fans List",
   ]);
 
