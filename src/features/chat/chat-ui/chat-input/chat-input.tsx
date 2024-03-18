@@ -47,7 +47,7 @@ const ChatInput: FC<Props> = (props) => {
   const { data: session } = useSession();
   const buttonRef = useRef<HTMLButtonElement>(null);
   // const admin = session?.user.email === props.AdminEmail;
-  const hasvalue = props.AdminEmail.includes(session?.user.email||"")
+  const hasvalue = props.AdminEmail.includes(session?.user.email || "");
 
   const { rows, resetRows, onKeyDown, onKeyUp } = useChatInputDynamicHeight({
     buttonRef,
@@ -57,9 +57,9 @@ const ChatInput: FC<Props> = (props) => {
     chatBody.chatType === "data" && chatBody.chatOverFileName;
 
   const [suggestions, setSuggestions] = useState<string[]>([
-    "Explain Warranty of Switches",
-    "Explain Color of Switches",
-    "MRP of SLV0102401/02 - 10A 2-way Switch 2M in White color",
+    "Switchgear Warranty Period",
+    "Color of switches",
+    "Give Fans List",
   ]);
 
   const onSuggestionClick = (suggestion: string) => {

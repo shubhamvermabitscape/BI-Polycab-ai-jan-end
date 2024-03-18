@@ -16,12 +16,14 @@ export const ChatMessageEmptyState: FC<Prop> = (props) => {
   return (
     <div className="grid sm:grid-cols-5 w-full items-center container mx-auto max-w-3xl justify-center sm:h-full sm:gap-9 gap-y-4 mt-5 sm:mt-0">
       <div className="col-span-2 gap-5 flex flex-col flex-1 items-center sm:items-start">
-        <img src="/ai-icon.png" className="sm:w-36 w-16" />
-        <p className="">Start by just typing your message in the box below.</p>
+        <img src="/ai-icon.png" className="sm:w-28 w-16" />
+        <p className="text-center sm:text-start">
+          AskMe anything about Polycab Products
+        </p>
       </div>
-      <Card className="col-span-3 flex flex-col gap-5 p-5 ">
+      <Card className="col-span-3 flex flex-col gap-2 p-5 ">
         <Typography variant="h4" className="text-primary">
-          Personalise
+          Upload File
         </Typography>
 
         <div className="flex flex-col gap-2">
