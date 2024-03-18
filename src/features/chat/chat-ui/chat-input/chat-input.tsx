@@ -21,11 +21,11 @@ const Suggestions: FC<SuggestionsProps> = ({
   onSuggestionClick,
 }) => {
   return (
-    <div className="flex container justify-center gap-3 sm:gap-10 flex-wrap">
+    <div className="flex container justify-center gap-2 sm:gap-10 flex-wrap">
       {suggestions.map((suggestion, index) => (
         <button
           key={index}
-          className="sm:w-fit w-full text-red-600 sm:text-sm lg:text-sm font-semibold p-1 px-2 sm:border-red-400 border-red-300 border-2 sm:shadow-2xl shadow-red-500 rounded-xl hover:bg-red-100 cursor-pointer"
+          className="sm:w-fit w-full text-slate-600 sm:text-sm text-xs font-medium pl-4 pr-4 sm:pt-1.5 sm:pb-1.5 pt-1 pb-1 border bg-slate-100 border-slate-400 drop-shadow shadow-slate-400 hover:bg-slate-200 cursor-pointer rounded-full"
           onClick={() => onSuggestionClick(suggestion)}
         >
           {suggestion}
@@ -78,7 +78,10 @@ const ChatInput: FC<Props> = (props) => {
   };
 
   return (
-    <form onSubmit={submit} className="absolute bottom-0 w-full items-center">
+    <form
+      onSubmit={submit}
+      className="absolute bottom-0 w-full items-center bg-white"
+    >
       <Suggestions
         suggestions={suggestions}
         onSuggestionClick={onSuggestionClick}
@@ -90,12 +93,12 @@ const ChatInput: FC<Props> = (props) => {
           rows={rows}
           value={input}
           placeholder="Send a message"
-          className="min-h-fit bg-background shadow-sm resize-none py-4 pr-[80px]"
+          className="min-h-fit bg-background shadow-sm resize-none sm:py-4 py-2 pr-[80px]"
           onKeyUp={onKeyUp}
           onKeyDown={onKeyDown}
           onChange={onChange}
         ></Textarea>
-        <div className="absolute right-0 bottom-0 px-8 flex items-end h-full mr-2 mb-4">
+        <div className="absolute right-0 bottom-0 px-8 flex items-end h-full sm:mr-2 mr-0 sm:mb-4 mb-[7px]">
           {speechEnabled && <Microphone disabled={isLoading} />}
           <Button
             size="icon"

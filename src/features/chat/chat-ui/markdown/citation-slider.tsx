@@ -15,9 +15,9 @@ interface SliderProps {
   name: string;
   index: number;
   id: string;
-  blobPage:any;
-  blobName:any;
-  items:any;
+  blobPage: any;
+  blobName: any;
+  items: any;
 }
 
 export const CitationSlider: FC<SliderProps> = (props) => {
@@ -38,41 +38,41 @@ export const CitationSlider: FC<SliderProps> = (props) => {
   }, []);
 
   return (
-  <div className="flex">
+    <div className="flex">
       <form>
-      <input type="hidden" name="id" value={props.id} />
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button
-            variant="outline"
-            size="sm"
-            formAction={formAction}
-            type="submit"
-            value={22}
-          >
-            P:{page}
-          </Button>
-        </SheetTrigger>
-        <SheetContent size="LG">
-          <SheetHeader>
-            <SheetTitle>{props.blobName}</SheetTitle>
-          </SheetHeader>
-          {/* <div className="text-sm text-muted-foreground">{node}</div> */}
-          <div className="flex">
-            {sasToken ? (
-              <iframe
-                src={`${sasToken}#page=${page}`}
-                width="650px"
-                height="900px"
-                allowFullScreen
-              ></iframe>
-            ) : (
-              <p>Loading...</p>
-            )}
-          </div>
-        </SheetContent>
-      </Sheet>
-    </form>
-  </div>
+        <input type="hidden" name="id" value={props.id} />
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              formAction={formAction}
+              type="submit"
+              value={22}
+            >
+              P:{page}
+            </Button>
+          </SheetTrigger>
+          <SheetContent size="LG">
+            <SheetHeader>
+              <SheetTitle>{props.blobName}</SheetTitle>
+            </SheetHeader>
+            {/* <div className="text-sm text-muted-foreground">{node}</div> */}
+            <div className="flex">
+              {sasToken ? (
+                <iframe
+                  src={`${sasToken}#page=${page}`}
+                  width="650px"
+                  height="900px"
+                  allowFullScreen
+                ></iframe>
+              ) : (
+                <p>Loading...</p>
+              )}
+            </div>
+          </SheetContent>
+        </Sheet>
+      </form>
+    </div>
   );
 };
