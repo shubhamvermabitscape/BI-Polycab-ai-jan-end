@@ -59,7 +59,7 @@ export const MenuItems: FC<Prop> = (props) => {
          
 
           {hasvalue ?  <Button
-            className="invisible  group-hover/item:visible hover:text-brand"
+            className="sm:invisible group-hover/item:visible hover:text-brand"
             size={"sm"}
             variant={"ghost"}
             onClick={async (e) => {

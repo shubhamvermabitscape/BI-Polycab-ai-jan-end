@@ -21,11 +21,11 @@ const Suggestions: FC<SuggestionsProps> = ({
   onSuggestionClick,
 }) => {
   return (
-    <div className="flex container justify-center gap-10 ">
+    <div className="flex container justify-center gap-3 sm:gap-10 flex-wrap">
       {suggestions.map((suggestion, index) => (
         <button
           key={index}
-          className=" size-full text-red-600 sm:text-sm lg:text-sm font-semibold p-1 px-2 border-red-400 border-2 shadow-2xl shadow-red-500 rounded-xl hover:bg-red-100 cursor-pointer"
+          className="sm:w-fit w-full text-red-600 sm:text-sm lg:text-sm font-semibold p-1 px-2 sm:border-red-400 border-red-300 border-2 sm:shadow-2xl shadow-red-500 rounded-xl hover:bg-red-100 cursor-pointer"
           onClick={() => onSuggestionClick(suggestion)}
         >
           {suggestion}

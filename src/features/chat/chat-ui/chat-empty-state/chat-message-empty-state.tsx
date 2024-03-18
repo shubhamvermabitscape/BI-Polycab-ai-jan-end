@@ -14,9 +14,9 @@ export const ChatMessageEmptyState: FC<Prop> = (props) => {
   const { showFileUpload } = fileState;
 
   return (
-    <div className="grid grid-cols-5 w-full items-center container mx-auto max-w-3xl justify-center h-full gap-9">
-      <div className="col-span-2 gap-5 flex flex-col flex-1">
-        <img src="/ai-icon.png" className="w-36" />
+    <div className="grid sm:grid-cols-5 w-full items-center container mx-auto max-w-3xl justify-center sm:h-full sm:gap-9 gap-y-4 mt-5 sm:mt-0">
+      <div className="col-span-2 gap-5 flex flex-col flex-1 items-center sm:items-start">
+        <img src="/ai-icon.png" className="sm:w-36 w-16" />
         <p className="">Start by just typing your message in the box below.</p>
       </div>
       <Card className="col-span-3 flex flex-col gap-5 p-5 ">
