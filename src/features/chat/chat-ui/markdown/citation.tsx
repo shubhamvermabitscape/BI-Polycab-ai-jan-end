@@ -35,30 +35,28 @@ export const Citation: FC<Props> = (props: Props) => {
     return acc;
   }, {} as Record<string, Citation[]>);
 
-    const blobName = props.items[0].name;
-    const blobPage = props.items[0].page;
-    // console.log(citations)
+  const blobName = props.items[0].name;
+  const blobPage = props.items[0].page;
+  // console.log(citations)
 
   return (
     <div className="interactive-citation p-4 border mt-4 flex flex-col rounded-md gap-2">
       {Object.entries(citations).map(([name, items], index: number) => {
-       
         return (
           <div key={index} className="flex flex-col gap-2">
             <div className="font-semibold text-sm">{name}</div>
-            <div className="flex">
+            <div className="flex flex-wrap">
               {items.map((item, index: number) => {
-                
                 return (
-                  <div key={index} >
-                     <CitationSlider
-                     items={item.page}
-                     blobName={blobName}
+                  <div key={index}>
+                    <CitationSlider
+                      items={item.page}
+                      blobName={blobName}
                       blobPage={blobPage}
                       index={index + 1}
                       name={item.name}
                       id={item.id}
-                    /> 
+                    />
                   </div>
                 );
               })}
@@ -66,10 +64,7 @@ export const Citation: FC<Props> = (props: Props) => {
             </div>
           </div>
         );
-      })
-      
-      }
-       
+      })}
     </div>
   );
 };
