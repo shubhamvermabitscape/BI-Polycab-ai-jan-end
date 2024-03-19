@@ -21,7 +21,7 @@ export const ChatUI: FC<Prop> = (props) => {
       {messages.length !== 0 ? (
         <ChatMessageContainer />
       ) : (
-        <ChatMessageEmptyState />
+        <ChatMessageEmptyState AdminEmail={props.AdminEmail} />
       )}
 
       <ChatInput AdminEmail={props.AdminEmail} />
