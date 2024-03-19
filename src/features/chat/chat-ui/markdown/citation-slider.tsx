@@ -62,9 +62,8 @@ export const CitationSlider: FC<SliderProps> = (props) => {
               {sasToken ? (
                 <iframe
                   src={`${sasToken}#page=${page}`}
-                  width="650px"
-                  height="900px"
                   allowFullScreen
+                  style={{ width: "100%", height: "100vh" }}
                 ></iframe>
               ) : (
                 <p>Loading...</p>
