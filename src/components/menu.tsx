@@ -46,9 +46,12 @@ MenuContent.displayName = "MenuContent";
 interface MenuItemProps extends React.HTMLAttributes<HTMLLinkElement> {
   href: string;
   isSelected?: boolean;
+  onclick:()=>void
 }
 
 const MenuItem: React.FC<MenuItemProps> = (props) => {
+  const functionClick = props.onclick
+
   return (
     <Link
       className={cn(
@@ -56,6 +59,7 @@ const MenuItem: React.FC<MenuItemProps> = (props) => {
         "items-center text-sm font-medium flex gap-2 p-2 py-1 rounded-md hover:bg-primary/25",
         props.isSelected && "bg-primary/25"
       )}
+      onClick={functionClick}
       href={props.href}
     >
       {props.children}

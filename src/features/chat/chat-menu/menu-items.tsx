@@ -8,6 +8,7 @@ import { useParams, useRouter } from "next/navigation";
 import { FC } from "react";
 import { ChatThreadModel } from "../chat-services/models";
 import { signOut, useSession } from "next-auth/react";
+import { useMenuContext } from "@/features/main-menu/menu-context";
 
 interface Prop {
   menuItems: Array<ChatThreadModel>;
@@ -19,6 +20,7 @@ export const MenuItems: FC<Prop> = (props) => {
   const { id } = useParams();
   const router = useRouter();
   const { showError } = useGlobalMessageContext();
+  const { isMenuOpen, toggleMenu } = useMenuContext();
   const hasvalue = props.Adminemail.includes(session?.user.email||"")
 
   const sendData = async (threadID: string) => {
@@ -39,6 +41,7 @@ export const MenuItems: FC<Prop> = (props) => {
           href={"/chat/" + thread.id}
           isSelected={id === thread.id}
           key={index}
+          onclick={toggleMenu}
           className="justify-between group/item"
         >
           {thread.chatType === "data" ? (
