@@ -15,7 +15,7 @@ export const ChatMessageEmptyState: FC<Prop> = (props) => {
 
   return (
     <div className="grid sm:grid-cols-5 w-full items-center container mx-auto max-w-3xl justify-center sm:h-full sm:gap-9 gap-y-4 mt-5 sm:mt-0">
-      <div className="col-span-2 gap-5 flex flex-col flex-1 items-center sm:items-start">
+      <div className="col-span-2 gap-5 flex flex-col flex-1 items-center sm:items-start w-72">
         <img src="/ai-icon.png" className="sm:w-28 w-16" />
         <p className="text-center sm:text-start">
           AskMe anything about Polycab Products

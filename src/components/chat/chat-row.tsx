@@ -30,13 +30,13 @@ const ChatRow: FC<ChatRowProps> = (props) => {
   return (
     <div
       className={cn(
-        "container mx-auto max-w-4xl py-10 flex flex-col ",
+        "container mx-auto max-w-4xl sm:py-10 py-3 flex flex-col ",
         props.type === "assistant" ? "items-start" : "items-end"
       )}
     >
       <div
         className={cn(
-          "flex flex-col  max-w-[690px] border rounded-lg overflow-hidden  p-4 gap-8"
+          "flex flex-col max-w-[690px] border rounded-lg overflow-hidden p-2 sm:p-4 pt-1 pb-2 pl-4 pr-4 gap-4 sm:gap-8"
         )}
       >
         <div className="flex flex-1">
@@ -48,8 +48,8 @@ const ChatRow: FC<ChatRowProps> = (props) => {
                 </Avatar>
               ) : (
                 <UserCircle
-                  width={40}
-                  height={40}
+                  width={30}
+                  height={30}
                   strokeWidth={1.2}
                   className="text-primary"
                 />
@@ -76,7 +76,7 @@ const ChatRow: FC<ChatRowProps> = (props) => {
 
         <div
           className={cn(
-            "-m-4 p-4 prose prose-slate dark:prose-invert break-words prose-p:leading-relaxed prose-pre:p-0 max-w-non",
+            "-m-4 sm:p-4 pl-5 pr-5 pt-1 pb-3 prose prose-slate text-sm sm:text-base dark:prose-invert break-words prose-p:leading-relaxed prose-pre:p-0 max-w-non",
             props.type === "assistant"
               ? "bg-secondary"
               : "bg-primary text-white"

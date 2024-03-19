@@ -44,7 +44,7 @@ export const CitationSlider: FC<SliderProps> = (props) => {
         <Sheet>
           <SheetTrigger asChild>
             <Button
-              variant="outline"
+              variant="pdfoutline"
               size="sm"
               formAction={formAction}
               type="submit"
