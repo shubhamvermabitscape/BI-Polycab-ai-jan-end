@@ -32,7 +32,7 @@ export const NewChat: FC<adminemail> = ({ Adminemail }) => {
     <>
       {hasvalue ? (
         <Button
-          className="gap-2 rounded-full w-[40px] h-[40px] p-1 text-primary"
+          className="gap-2 rounded-full sm:w-[40px] sm:h-[40px] w-[30px] h-[30px] p-1 text-primary"
           variant={"outline"}
           onClick={() => startNewChat()}
         >
