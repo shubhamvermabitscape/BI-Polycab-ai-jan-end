@@ -9,10 +9,12 @@ import {
 const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING;
 const containerName = process.env.AZURE_STORAGE_CONTAINER_NAME;
 
-const blobServiceClient =
-  BlobServiceClient.fromConnectionString(connectionString??"");
-const containerClient: ContainerClient =
-  blobServiceClient.getContainerClient(containerName??"");
+const blobServiceClient = BlobServiceClient.fromConnectionString(
+  connectionString ?? ""
+);
+const containerClient: ContainerClient = blobServiceClient.getContainerClient(
+  containerName ?? ""
+);
 
 export const UploadtoBlob = async (formData: FormData) => {
   // console.log(formData);
@@ -34,7 +36,10 @@ export const UploadtoBlob = async (formData: FormData) => {
     // Use uploadData with the file content
     const uploadResponse: BlobUploadCommonResponse =
       await blockBlobClient.uploadData(fileContent, {
-        blobHTTPHeaders: { blobContentType: "application/pdf" },
+        blobHTTPHeaders: {
+          blobContentType: "application/pdf",
+          blobContentDisposition: "inline",
+        },
       });
 
     // console.log("File uploaded successfully:", uploadResponse);
