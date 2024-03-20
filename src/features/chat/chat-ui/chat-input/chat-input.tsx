@@ -25,7 +25,7 @@ const Suggestions: FC<SuggestionsProps> = ({
       {suggestions.map((suggestion, index) => (
         <button
           key={index}
-          className="sm:w-fit w-full text-slate-600 sm:text-sm text-xs font-medium pl-4 pr-4 sm:pt-1.5 sm:pb-1.5 pt-1 pb-1 border bg-slate-100 border-slate-400 drop-shadow shadow-slate-400 hover:bg-slate-200 cursor-pointer rounded-full"
+          className="sm:w-fit w-full text-slate-600 sm:text-sm text-xs font-medium pl-4 pr-4 sm:pt-1.5 sm:pb-1.5 pt-1 pb-1 border bg-slate-100 border-slate-400 drop-shadow shadow-slate-400 hover:bg-slate-200 cursor-pointer rounded-lg"
           onClick={() => onSuggestionClick(suggestion)}
         >
           {suggestion}

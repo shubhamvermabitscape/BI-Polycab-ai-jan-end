@@ -45,7 +45,7 @@ export const Citation: FC<Props> = (props: Props) => {
         return (
           <div key={index} className="flex flex-col gap-2">
             <div className="font-semibold text-sm">{name}</div>
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap gap-2">
               {items.map((item, index: number) => {
                 return (
                   <div key={index}>
