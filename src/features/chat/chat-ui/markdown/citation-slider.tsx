@@ -14,6 +14,7 @@ import { blobFileHandler } from "../../blob-services/blob-file-handler";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 import { Document, Page, pdfjs } from "react-pdf";
+import { useResizeDetector } from "react-resize-detector";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 interface SliderProps {
   name: string;
@@ -26,6 +27,7 @@ interface SliderProps {
 
 export const CitationSlider: FC<SliderProps> = (props) => {
   // console.log(props.items)
+  const { width, ref } = useResizeDetector()
   const [node, formAction] = useFormState(CitationAction, null);
   const [sasToken, setSasToken] = useState<string | undefined>();
   const page = parseInt(props.items ?? "0");
@@ -62,11 +64,13 @@ export const CitationSlider: FC<SliderProps> = (props) => {
               <SheetTitle>{props.blobName}</SheetTitle>
             </SheetHeader>
             {/* <div className="text-sm text-muted-foreground">{node}</div> */}
-            <div className="flex">
+            <div className="flex-1 w-full max-h-screen">
               {sasToken ? (
-                <Document file={sasToken} className="max-h-full">
-                  <Page pageNumber={page} />
+                <div ref={ref}>
+                  <Document file={sasToken} className="max-h-full">
+                  <Page pageNumber={page} width={width ? width : 1} />
                 </Document>
+                </div>
               ) : (
                 <p>Loading...</p>
               )}
