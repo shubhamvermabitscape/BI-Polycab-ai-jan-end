@@ -22,7 +22,7 @@ export const ChatMessageContainer = () => {
   return (
     <div className="h-full rounded-md overflow-y-auto " ref={scrollRef}>
       <div className="flex justify-center p-4">{/* <ChatHeader /> */}</div>
-      <div className=" sm:pb-[80px] pb-[125px] flex flex-col justify-end  flex-1">
+      <div className=" sm:pb-[80px] pb-[150px] flex flex-col justify-end  flex-1">
         {displayedMessages.map((message, index) => (
           <ChatRow
             name={message.role === "user" ? session?.user?.name! : AI_NAME}

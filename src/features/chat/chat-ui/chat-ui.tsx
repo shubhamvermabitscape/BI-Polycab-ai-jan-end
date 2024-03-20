@@ -17,7 +17,7 @@ export const ChatUI: FC<Prop> = (props) => {
   //   window.location.reload()
   // },[messages])
   return (
-    <div className="h-full relative overflow-hidden flex-1 bg-card rounded-md shadow-md">
+    <div className="overflow-hidden flex-1 bg-card rounded-md shadow-md w-[calc(100%-9px)] sm:w-[calc(100%-80px)] h-[calc(100%-9px)] sm:h-[calc(100%-16px)] absolute">
       {messages.length !== 0 ? (
         <ChatMessageContainer />
       ) : (
