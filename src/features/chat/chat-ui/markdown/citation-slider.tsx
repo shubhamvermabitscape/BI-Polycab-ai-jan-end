@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -10,7 +11,10 @@ import { FC, useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { CitationAction } from "./citation-action";
 import { blobFileHandler } from "../../blob-services/blob-file-handler";
-
+import "react-pdf/dist/Page/AnnotationLayer.css";
+import "react-pdf/dist/Page/TextLayer.css";
+import { Document, Page, pdfjs } from "react-pdf";
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 interface SliderProps {
   name: string;
   index: number;
@@ -60,11 +64,9 @@ export const CitationSlider: FC<SliderProps> = (props) => {
             {/* <div className="text-sm text-muted-foreground">{node}</div> */}
             <div className="flex">
               {sasToken ? (
-                <iframe
-                  src={`${sasToken}#page=${page}`}
-                  allowFullScreen
-                  style={{ width: "100%", height: "100vh" }}
-                ></iframe>
+                <Document file={sasToken} className="max-h-full">
+                  <Page pageNumber={page} />
+                </Document>
               ) : (
                 <p>Loading...</p>
               )}
