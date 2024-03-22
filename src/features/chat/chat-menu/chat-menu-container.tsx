@@ -11,7 +11,7 @@ export const ChatMenuContainer = ({
   // return <>{isMenuOpen ? children : null}</>;
   return (
     <div
-      className={`transform transition-all duration-500 bg-red-200 z-10  ${
+      className={`transform transition-all duration-500 bg-red-200 z-10 hidden ${
         isMenuOpen ? "translate-x-0 sm:w-80 w-full" : "-translate-x-full"
       }`}
     >
